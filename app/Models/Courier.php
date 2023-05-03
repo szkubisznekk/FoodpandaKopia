@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Courier extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'phone_number',
+        'order_id',
+    ];
 }
