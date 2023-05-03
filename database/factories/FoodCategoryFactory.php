@@ -17,7 +17,7 @@ class FoodCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->unique()->randomElement($array=array('Desszert','Foetel','Leves','Ital')),
         ];
     }
 }

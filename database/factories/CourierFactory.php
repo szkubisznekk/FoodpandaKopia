@@ -17,7 +17,8 @@ class CourierFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'phone_number' => $this->faker->e164PhoneNumber(),
+            'order_id' => \App\Models\Order::inRandomOrder()->first()->id,
         ];
     }
 }

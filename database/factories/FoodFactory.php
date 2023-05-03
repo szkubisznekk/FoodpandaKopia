@@ -17,7 +17,11 @@ class FoodFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'restaurant_id' => \App\Models\Restaurant::inRandomOrder()->first()->id,
+            'category_id' => \App\Models\FoodCategory::inRandomOrder()->first()->id,
+            'name' => $this->faker->unique()->name(),
+            'description' => $this->faker->text(),
+            'price' => $this->faker->numberBetween(1, 40000),
         ];
     }
 }

@@ -17,7 +17,9 @@ class RestaurantFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->company(),
+            'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'password' => $this->faker->password(),
         ];
     }
 }
