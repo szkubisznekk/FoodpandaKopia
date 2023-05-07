@@ -19,7 +19,7 @@ class FoodFactory extends Factory
         return [
             'restaurant_id' => \App\Models\Restaurant::inRandomOrder()->first()->id,
             'category_id' => \App\Models\FoodCategory::inRandomOrder()->first()->id,
-            'name' => $this->faker->unique()->name(),
+            'name' => $this->faker->randomElement($array=array('Alma','Cola','Gyros','Kecskemáj','Víz','Kenyér','Krumpli')),
             'description' => $this->faker->text(),
             'price' => $this->faker->numberBetween(1, 40000),
         ];

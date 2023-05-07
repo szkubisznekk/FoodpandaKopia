@@ -19,7 +19,7 @@ class BasketFactory extends Factory
         return [
             'order_id' => \App\Models\Order::inRandomOrder()->first()->id,
             'food_id' => \App\Models\Food::inRandomOrder()->first()->id,
-            'amount' => $this->faker->numberBetween(1, 1000),
+            'amount' => $this->faker->numberBetween(1, 10),
         ];
     }
 }
