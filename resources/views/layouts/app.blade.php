@@ -9,7 +9,19 @@
     <title>Foodpanda Kopia</title>
     {{-- Font --}}
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+        rel="stylesheet">
 </head>
+
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL'0,
+            'wght'400,
+            'GRAD'0,
+            'opsz'48
+    }
+</style>
 
 <body>
     <div class="grid grid-cols-3 divide-x-4 divide-black bg-sky-400 h-10 sticky top-0">
@@ -29,6 +41,10 @@
     </div>
     <div>
         @yield('content')
+    </div>
+    <div class="bg-sky-400">
+        <span class="material-symbols-outlined">copyright</span>
+        <p>Methlab™©®</p>
     </div>
 </body>
 
