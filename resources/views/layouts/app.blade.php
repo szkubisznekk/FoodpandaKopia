@@ -30,7 +30,7 @@
                     class="mx-auto h-9 w-9" /></a></div>
         <div class="grid grid-cols-3 divide-x-2 divide-black">
             <div></div>
-            <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/wultah.png') }}"
+            <div><a href="{{ url('/login') }}"><img src="{{ Vite::asset('resources/images/wultah.png') }}"
                         alt="walter logo" class="ml-[20%] mr-2 h-9 w-9 inline-block" /><span
                         class="">Bejelentkezés</span></a></div>
             <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/basket.png') }}"
