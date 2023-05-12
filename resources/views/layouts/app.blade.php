@@ -30,7 +30,8 @@
         <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
                     class="mx-auto h-9 w-9" /></a></div>
         <div class="grid grid-cols-3 divide-x-2 divide-black">
-            <div></div>
+            <div> <div><a href="{{ url('/restaurantmanager') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
+                class="mx-auto h-9 w-9" /></a></div></div>
             <div>
                 @if ($user != null)
                     <p> {{ $user->name }} </p>
@@ -52,7 +53,7 @@
     <form method="POST" action="{{ route('logout') }}">
         @csrf
         <div>
-            <input type="submit" value="LOGOUT"><br>
+            <input type="submit" value="Kijelentkezés"><br>
         </div>
     </form>
     <div class="bg-sky-400">

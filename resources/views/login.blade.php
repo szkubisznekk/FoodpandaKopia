@@ -32,7 +32,7 @@
         </div>
 
         <div>
-            <input type="submit" value="REGISTER"><br>
+            <input type="submit" value="REGISZTRÁCIÓ"><br>
         </div>
     </form>
     <form method="POST" action="{{ route('login') }}">
@@ -49,7 +49,7 @@
         </div>
 
         <div>
-            <input type="submit" value="LOGIN"><br>
+            <input type="submit" value="BEJELENTKEZÉS"><br>
         </div>
     </form>
 @endsection

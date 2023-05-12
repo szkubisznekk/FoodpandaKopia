@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RestaurantsController;
+use App\Http\Controllers\RestaurantManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('/restaurants/{restaurant?}', [RestaurantsController::class, 'index']);
+Route::get('/restaurantmanager/{restaurant?}', [RestaurantManagerController::class, 'index']);
+Route::post('/restaurant-login', [RestaurantManagerController::class, 'login'])->name('restaurant-login');
+
