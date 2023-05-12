@@ -25,7 +25,8 @@
 
 <body>
     <div class="grid grid-cols-3 divide-x-4 divide-black bg-sky-400 h-10 sticky top-0">
-        <div>1</div>
+        <div><a href="{{ url('/restaurants') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
+            class="mx-auto h-9 w-9" /></a></div>
         <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
                     class="mx-auto h-9 w-9" /></a></div>
         <div class="grid grid-cols-3 divide-x-2 divide-black">
