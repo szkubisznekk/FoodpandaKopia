@@ -11,21 +11,21 @@ use App\Models\Restaurant;
 
 class RestaurantManagerController extends Controller
 {
-    public function index($restaurant = 0)
+    public function index($restaurant_id = 0)
     {
         $user = Auth::user();
         $restaurants = DB::table('restaurants')->where('restaurants.user_id', strval($user->id))->get();
 
-        if($restaurant == 0)
+        if($restaurant_id == 0)
         {
-            return view('restaurantmanager')->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant]);
+            return view('restaurantmanager')->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id]);
         }
         else
         {
-            $restaurant_ = DB::table('restaurants')->where('restaurants.id', $restaurant)->first();
-            if($restaurant_->user_id == $user->id)
+            $restaurant = DB::table('restaurants')->where('restaurants.id', $restaurant_id)->first();
+            if($restaurant->user_id == $user->id)
             {
-                return view('restaurantmanager', [strval($restaurant)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant]);
+                return view('restaurantmanager', [strval($restaurant_id)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id]);
             }
             else
             {
