@@ -25,12 +25,12 @@
 
 <body>
     <div class="grid grid-cols-3 divide-x-4 divide-black bg-sky-400 h-10 sticky top-0">
-        <div><a href="{{ url('/restaurants') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
+        <div><a href="{{ url('/restaurants') }}"><img src="{{ Vite::asset('resources/images/restaurant.png') }}" alt="panda logo"
             class="mx-auto h-9 w-9" /></a></div>
-        <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
+        <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/pandalogo.png') }}" alt="panda logo"
                     class="mx-auto h-9 w-9" /></a></div>
         <div class="grid grid-cols-3 divide-x-2 divide-black">
-            <div> <div><a href="{{ url('/restaurantmanager') }}"><img src="{{ Vite::asset('resources/images/rv.png') }}" alt="panda logo"
+            <div> <div><a href="{{ url('/restaurantmanager') }}"><img src="{{ Vite::asset('resources/images/manager.png') }}" alt="panda logo"
                 class="mx-auto h-9 w-9" /></a></div></div>
             <div>
                 @if ($user != null)
