@@ -21,4 +21,4 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('logout');
-Route::get('/restaurants', [RestaurantsController::class, 'index']);
+Route::get('/restaurants/{restaurant?}', [RestaurantsController::class, 'index']);
