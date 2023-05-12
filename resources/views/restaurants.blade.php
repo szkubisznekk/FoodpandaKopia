@@ -13,7 +13,7 @@
                 <h2> Név: {{ $food->name }} </h2>
                 <p> Leírás: {{ $food->description }} </p>
                 <p> Ár: {{ $food->price }} Ft </p>
-                <p> Kategória: {{ $food->category_id }} </p>
+                <p> Kategória: {{ $food->category_name }} </p>
                 <br>
             </div>
         @endforeach
