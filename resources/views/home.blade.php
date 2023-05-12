@@ -154,4 +154,9 @@
         ac. Aliquam at risus auctor, vulputate nibh nec, porta magna. Pellentesque habitant morbi tristique senectus et
         netus et malesuada fames ac turpis egestas. Donec ornare turpis quis consectetur faucibus.
     </p>
+    <div>
+        @if ($user != null)
+            <p> {{ $user->name }} </p>
+        @endif
+    </div>
 @endsection

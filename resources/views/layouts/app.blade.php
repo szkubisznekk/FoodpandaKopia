@@ -42,6 +42,12 @@
     <div>
         @yield('content')
     </div>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <div>
+            <input type="submit" value="LOGOUT"><br>
+        </div>
+    </form>
     <div class="bg-sky-400">
         <span class="material-symbols-outlined">copyright</span>
         <p>Methlab™©®</p>
