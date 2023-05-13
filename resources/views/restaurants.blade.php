@@ -10,7 +10,7 @@
     @else
         <div>
             <form action="/restaurants/{{ $pickedRestaurant }}">
-                <div class="relative border-2 border-gray-100 m-4 rounded-lg" style="z-index: -100">
+                <div class="relative border-2 border-gray-100 m-4 rounded-lg" >
                     <div class="absolute top-4 left-3">
                         <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
                     </div>
@@ -23,12 +23,13 @@
                 </div>
             </form>
         </div>
-        @foreach ($foods as $food)
+        @foreach ($categories as $category)
+        <p> {{ $category->name }} </p>
+            @foreach ($foods[$category->id] as $food)
             <div>
                 <h2> Név: {{ $food->name }} </h2>
                 <p> Leírás: {{ $food->description }} </p>
                 <p> Ár: {{ $food->price }} Ft </p>
-                <p> Kategória: {{ $food->category_name }} </p>
 
                 <form method="POST", action="{{ route('restaurants.addToCart') }}">
                     @csrf
@@ -44,6 +45,7 @@
 
                 <br>
             </div>
+            @endforeach
         @endforeach
     @endif
 @endsection

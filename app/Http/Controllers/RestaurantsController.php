@@ -10,17 +10,33 @@ class RestaurantsController extends Controller
 {
     public function index($restaurant_id = 0)
     {
-        $foods = DB::table('food')->join('food_categories', 'food.category_id', '=', 'food_categories.id')->where('food.restaurant_id', $restaurant_id)->where('food.name','LIKE','%'.request('search').'%')->get([
-            'food.id',
-            'food.name',
-            'food.description',
-            'food.price',
-            'food_categories.name AS category_name',
-        ]);
-        //SELECT food.name, ...
-        //FROM food join food_categories on food.category_id = food.categories.id
-        //WHERE food.restaurant_id
+        $food_cat=DB::table('food_categories')->join('food', 'food_categories.id', '=', 'food.category_id')->where('food.restaurant_id',$restaurant_id)->where('food.name','LIKE','%'.request('search').'%')->get([
+            'food_categories.name',
+            'food_categories.id',
+        ])->unique();
+        $array=[];
+        foreach($food_cat as $category)
+        {
+            $foods=DB::table('food')->where('food.category_id',$category->id)->where('food.name','LIKE','%'.request('search').'%')->get([
+                'food.id',
+                'food.name',
+                'food.description',
+                'food.price',
+            ]);
+            $array+=[$category->id=>$foods];
+        }
+        return view('restaurants')->with(['restaurants'=>Restaurant::all(), 'pickedRestaurant' => $restaurant_id, 'foods' => $array,'categories' => $food_cat]);
 
-        return view('restaurants')->with(['restaurants'=>Restaurant::all(), 'pickedRestaurant' => $restaurant_id, 'foods' => $foods]);
+        /*
+        SELECT DISTINCT food_categories.name, food_categories.id
+        FROM food_categories
+        INNER JOIN food ON food_categories.id = food.category_id
+        WHERE food.restaurant_id = $restaurant_id;
+
+        SELECT *
+        FROM food
+        WHERE food.category_id = $category_id;
+        */
+
     }
 }
