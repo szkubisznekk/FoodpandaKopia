@@ -28,7 +28,9 @@
     <nav class="navbar">
         <!-- LOGO -->
         <div class="compname">
-            <a href="{{ url('/') }}"><h1 class="logo">Food<span style="color:#ffffff;">panda</span>Kópia</h1></a>
+            <a href="{{ url('/') }}">
+                <h1 class="logo">Food<span style="color:#ffffff;">panda</span>Kópia</h1>
+            </a>
         </div>
         <!-- NAVIGATION MENU -->
         <ul class="nav-links">
@@ -42,7 +44,7 @@
                 <li><a href="#">Rólunk</a></li>
                 @if ($user != null)
                     <li class="services">
-                        <p>{{$user->name }}</p>
+                        <p>{{ $user->name }}</p>
                         <!-- DROPDOWN MENU -->
                         <ul class="dropdown">
                             <li>
@@ -66,6 +68,15 @@
         </ul>
 
     </nav>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div>
         @yield('content')
     </div>
