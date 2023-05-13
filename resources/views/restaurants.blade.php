@@ -19,18 +19,18 @@
                         class="h-14 w-full p1-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" placeholder="Search" />
                     <div class="absolute top-2 right-2">
                         <button type="submit"
-                            class="h-10 w-20 text-white rounded-lg bg-red-500 hover:bg-red-600">Search</button>
+                            class="h-10 w-20 text-white rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2]  hover:bg-red-600">Search</button>
                     </div>
                 </div>
             </form>
         </div>
         @foreach ($categories as $category)
             <p
-                class="font-regular relative block w-full rounded-lg bg-pink-300 p-4 text-base leading-5 text-black opacity-100">
+                class="font-regular relative block w-full rounded-lg bg-pink-500 p-4 text-base leading-5 text-black opacity-100">
                 {{ $category->name }} </p>
             @foreach ($foods[$category->id] as $food)
                 <div
-                    class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 p-4 text-base leading-5 text-white opacity-100">
+                    class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
                     <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
                     <p>{{ $food->description }} </p>
                     <p>{{ $food->price }} Ft </p>
