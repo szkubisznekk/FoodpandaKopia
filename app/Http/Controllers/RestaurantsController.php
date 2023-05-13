@@ -20,13 +20,4 @@ class RestaurantsController extends Controller
 
         return view('restaurants')->with(['restaurants'=>Restaurant::all(), 'pickedRestaurant' => $restaurant_id, 'foods' => $foods]);
     }
-
-    public function addToCart(Request $request)
-    {
-        $food = DB::table('food')->where('food.id', $request->food_id)->first();
-
-        session()->push('cart', ['food_id' => $request->food_id, 'food_name'=> $food->name, 'amount' => $request->amount, 'price' => $food->price * $request->amount]);
-
-        return redirect()->back();
-    }
 }

@@ -31,12 +31,4 @@
             </div>
         @endforeach
     @endif
-    @if (Session::has('cart'))
-        @foreach (Session::get('cart') as $cartItem)
-            <p> Name: {{ strval($cartItem['food_name']) }} </p>
-            <p> Amount: {{ strval($cartItem['amount']) }} db </p>
-            <p> Price: {{ strval($cartItem['price']) }} Ft </p>
-            <br>
-        @endforeach
-    @endif
 @endsection
