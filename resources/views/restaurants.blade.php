@@ -24,23 +24,23 @@
             </form>
         </div>
         @foreach ($categories as $category)
-        <p> {{ $category->name }} </p>
+        <p class="font-regular relative block w-full rounded-lg bg-pink-300 p-4 text-base leading-5 text-black opacity-100"> {{ $category->name }} </p>
             @foreach ($foods[$category->id] as $food)
-            <div>
-                <h2> Név: {{ $food->name }} </h2>
-                <p> Leírás: {{ $food->description }} </p>
-                <p> Ár: {{ $food->price }} Ft </p>
+            <div class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-pink-600 to-pink-400 p-4 text-base leading-5 text-white opacity-100">
+                <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
+                <p>{{ $food->description }} </p>
+                <p>{{ $food->price }} Ft </p>
 
                 <form method="POST", action="{{ route('restaurants.addToCart') }}">
                     @csrf
                     <input type="hidden" name="food_id", value="{{ $food->id }}">
 
                     <div>
-                        <label for="amount">Amount</label>
-                        <input type="text" name="amount"><br>
+                        <input class="inline-block bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[50] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="amount"><br>
                     </div>
-
-                    <input type="submit" value="Kosárba">
+                    <p>darab</p>
+                    <input class=" middle none center rounded-lg bg-pink-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    data-ripple-light="true" type="submit" value="Kosárba">
                 </form>
 
                 <br>
