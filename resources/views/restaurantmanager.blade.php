@@ -16,7 +16,7 @@
                 <p>
                     {{ $restaurant->name }}
                 </p>
-                <form method="POST" action="{{ route('restaurant-login') }}">
+                <form method="POST" action="{{ route('restaurantmanager.login') }}">
                     @csrf
                     <div>
                         <label for="password">

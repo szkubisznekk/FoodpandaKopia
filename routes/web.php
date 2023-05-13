@@ -21,9 +21,9 @@ use App\Http\Controllers\CartController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'index']);
-Route::post('/register', [LoginController::class, 'store'])->name('register');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('logout');
+Route::post('/login/register', [LoginController::class, 'store'])->name('login.register');
+Route::post('/login/login', [LoginController::class, 'login'])->name('login.login');
+Route::post('/login/lougout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('login.logout');
 
 Route::get('/restaurants/{restaurant_id?}', [RestaurantsController::class, 'index']);
 
@@ -33,5 +33,5 @@ Route::post('/cart/removeFromCart', [CartController::class, 'destroy'])->name('r
 Route::post('/cart/emptyCart', [CartController::class, 'clear'])->name('restaurants.emptyCart');
 
 Route::get('/restaurantmanager/{restaurant_id?}', [RestaurantManagerController::class, 'index']);
-Route::post('/restaurant-login', [RestaurantManagerController::class, 'login'])->name('restaurant-login');
+Route::post('/restaurantmanager/login', [RestaurantManagerController::class, 'login'])->name('restaurantmanager.login');
 

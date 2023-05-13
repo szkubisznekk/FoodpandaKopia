@@ -53,7 +53,7 @@
     <div>
         @yield('content')
     </div>
-    <form method="POST" action="{{ route('logout') }}">
+    <form method="POST" action="{{ route('login.logout') }}">
         @csrf
         <div>
             <input type="submit" value="Kijelentkezés"><br>
