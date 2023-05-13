@@ -23,6 +23,7 @@ Route::post('/register', [LoginController::class, 'store'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('logout');
 Route::get('/restaurants/{restaurant_id?}', [RestaurantsController::class, 'index']);
+Route::post('/restaurants/addToCart', [RestaurantsController::class, 'addToCart'])->name('restaurants.addToCart');
 Route::get('/restaurantmanager/{restaurant_id?}', [RestaurantManagerController::class, 'index']);
 Route::post('/restaurant-login', [RestaurantManagerController::class, 'login'])->name('restaurant-login');
 
