@@ -29,14 +29,14 @@
     <h2>Jelenlegi ételek az étteremben:</h2>
     @isset($foods)
         @foreach ($foods as $food)
-                <p>{{ $food->name }}</p>
+                <p>{{ $food->name }}--------{{ $food->food_category_name}}</p>
         @endforeach
     @endisset
     <form method="POST" action="{{ route('restaurantmanager.place') }}">
         @csrf
         <input type="hidden" name="restaurant_id" value="{{ $pickedRestaurant }}">
         <div>
-            <label for="food_category"> category Method</label>
+            <label for="food_category">Kategória</label>
             <select name="food_category">
                 @foreach ($food_categories::all() as $category)
                     <option value="{{ $category->id }}"> {{ $category->name }} </option>

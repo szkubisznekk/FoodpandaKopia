@@ -26,7 +26,15 @@ class RestaurantManagerController extends Controller
             $restaurant = DB::table('restaurants')->where('restaurants.id', $restaurant_id)->first();
             if($restaurant->user_id == $user->id)
             {
-                $foods = DB::table('food')->where('food.restaurant_id', $restaurant_id)->get();
+                $foods = DB::table('food')->join('food_categories','food.category_id','=','food_categories.id')->where('food.restaurant_id', $restaurant_id)->get([
+                    'food_categories.id AS food_category_id',
+                    'food_categories.name AS food_category_name',
+                    'food.id',
+                    'food.name',
+                    'food.description',
+                    'food.price',
+                ]
+                );
                 return view('restaurantmanager', [strval($restaurant_id)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id,'foods' => $foods]);
             }
             else
