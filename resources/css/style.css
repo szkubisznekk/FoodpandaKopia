@@ -49,6 +49,13 @@ li {
     transform: scale(1.1);
 }
 
+.compname:hover {
+    background-color: #273b91;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    transform: scale(1.1);
+}
+
 .menu li {
     padding: 5px 14px;
 }

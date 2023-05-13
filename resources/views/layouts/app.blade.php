@@ -28,7 +28,7 @@
     <nav class="navbar">
         <!-- LOGO -->
         <div class="compname">
-            <h1 class="logo">Food<span style="color:#273b91;">panda</span>Kópia</h1>
+            <a href="{{ url('/') }}"><h1 class="logo">Food<span style="color:#ffffff;">panda</span>Kópia</h1></a>
         </div>
         <!-- NAVIGATION MENU -->
         <ul class="nav-links">
@@ -37,7 +37,6 @@
             <label for="checkbox_toggle" class="hamburger">&#9776;</label>
             <!-- NAVIGATION MENUS -->
             <div class="menu">
-                <li><a href="{{ url('/') }}">Kezdőoldal</a></li>
                 <li><a href="{{ url('/restaurants') }}">Éttermek</a></li>
                 <li><a href="{{ url('/restaurantmanager') }}">Étteremkezelő</a></li>
                 <li><a href="#">Rólunk</a></li>
