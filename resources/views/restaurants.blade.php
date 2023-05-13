@@ -5,18 +5,19 @@
         @foreach ($restaurants as $restaurant)
             <a href="{{ url('restaurants/' . strval($restaurant->id)) }}">
                 <h2 class="middle none center mr-4 rounded-lg bg-blue-500 my-5 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true"  > {{ $restaurant->name }} </h2>
+                    data-ripple-light="true"> {{ $restaurant->name }} </h2>
             </a>
         @endforeach
     @else
         <div>
-            <form method="POST" action="/restaurants/{{ $pickedRestaurant }}">
+            <form action="/restaurants/{{ $pickedRestaurant }}">
                 <div class="relative border-2 border-gray-100 m-4 rounded-lg">
                     <div class="absolute top-4 left-3">
                         <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
                     </div>
                     <input type="text" name="search"
-                        class="h-14 w-full p1-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none" placeholder="Search" />
+                        class="h-14 w-full p1-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
+                        placeholder="Search" />
                     <div class="absolute top-2 right-2">
                         <button type="submit"
                             class="h-10 w-20 text-white rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2]  hover:bg-red-600">Search</button>

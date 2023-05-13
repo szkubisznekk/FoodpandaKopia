@@ -17,7 +17,7 @@ class RestaurantsController extends Controller
         $array=[];
         foreach($food_cat as $category)
         {
-            $foods=DB::table('food')->where('food.category_id',$category->id)->where('food.name','LIKE','%'.request('search').'%')->get([
+            $foods=DB::table('food')->where('food.restaurant_id',$restaurant_id)->where('food.category_id',$category->id)->where('food.name','LIKE','%'.request('search').'%')->get([
                 'food.id',
                 'food.name',
                 'food.description',
