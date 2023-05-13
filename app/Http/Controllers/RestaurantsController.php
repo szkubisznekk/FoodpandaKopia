@@ -16,6 +16,9 @@ class RestaurantsController extends Controller
             'food.price',
             'food_categories.name AS category_name',
         ]);
+        //SELECT food.name, ...
+        //FROM food join food_categories on food.category_id = food.categories.id 
+        //WHERE food.restaurant_id
 
         return view('restaurants')->with(['restaurants'=>Restaurant::all(), 'pickedRestaurant' => $restaurant_id, 'foods' => $foods]);
     }
