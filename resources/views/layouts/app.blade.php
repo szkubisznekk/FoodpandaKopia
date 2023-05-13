@@ -39,7 +39,7 @@
                 @if ($user != null)
                     <p> {{ $user->name }} </p>
                 @else
-                    <a href="{{ url('/login') }}"><img src="{{ Vite::asset('resources/images/wultah.png') }}"
+                    <a href="{{ url('/auth') }}"><img src="{{ Vite::asset('resources/images/wultah.png') }}"
                             alt="walter logo" class="ml-[20%] mr-2 h-9 w-9 inline-block" /><span
                             class="">Bejelentkezés</span></a>
                 @endif
@@ -53,7 +53,7 @@
     <div>
         @yield('content')
     </div>
-    <form method="POST" action="{{ route('login.logout') }}">
+    <form method="POST" action="{{ route('auth.logout') }}">
         @csrf
         <div>
             <input type="submit" value="Kijelentkezés"><br>

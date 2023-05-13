@@ -14,7 +14,7 @@
     <h1>
         Login
     </h1>
-    <form method="POST" action="{{ route('login.register') }}">
+    <form method="POST" action="{{ route('auth.register') }}">
         @csrf
         <div>
             <label for="name">Name</label>
@@ -35,7 +35,7 @@
             <input type="submit" value="REGISZTRÁCIÓ"><br>
         </div>
     </form>
-    <form method="POST" action="{{ route('login.login') }}">
+    <form method="POST" action="{{ route('auth.login') }}">
         @csrf
 
         <div>

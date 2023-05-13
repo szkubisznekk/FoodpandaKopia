@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RestaurantsController;
 use App\Http\Controllers\RestaurantManagerController;
 use App\Http\Controllers\CartController;
@@ -20,10 +20,10 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login/register', [LoginController::class, 'store'])->name('login.register');
-Route::post('/login/login', [LoginController::class, 'login'])->name('login.login');
-Route::post('/login/lougout', [Logincontroller::class, 'destroy'])->middleware('auth')->name('login.logout');
+Route::get('/auth', [AuthController::class, 'index']);
+Route::post('/auth/register', [AuthController::class, 'store'])->name('auth.register');
+Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/auth/lougout', [Authcontroller::class, 'destroy'])->middleware('auth')->name('auth.logout');
 
 Route::get('/restaurants/{restaurant_id?}', [RestaurantsController::class, 'index']);
 
