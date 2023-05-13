@@ -39,7 +39,6 @@
                 <li><a href="{{ url('/restaurants') }}">Éttermek</a></li>
                 <li><a href="{{ url('/restaurantmanager') }}">Étteremkezelő</a></li>
                 <li><a href="#">Rólunk</a></li>
-                <li><a href="#">Kosár</a></li>
                 @if ($user != null)
                 <li class="services">
                     <a href="#">{{ $user->name }}</a>
@@ -57,7 +56,10 @@
                 @else
                 <li><a href="{{ url('/login') }}">Bejelentkezés</a></li>
                 @endif
+                <li><a href="#">Kosár</a></li>
+
                 </div>
+
 
         </ul>
 
