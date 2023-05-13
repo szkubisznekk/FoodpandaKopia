@@ -11,6 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ Vite::asset('resources/css/style.css') }}">
 </head>
 
 <style>
@@ -24,45 +25,57 @@
 </style>
 
 <body>
-    <div class="grid grid-cols-3 divide-x-4 divide-black bg-sky-400 h-10 sticky top-0">
-        <div><a href="{{ url('/restaurants') }}"><img src="{{ Vite::asset('resources/images/restaurant.png') }}"
-                    alt="panda logo" class="mx-auto h-9 w-9" /></a></div>
-        <div><a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/pandalogo.png') }}"
-                    alt="panda logo" class="mx-auto h-9 w-9" /></a></div>
-        <div class="grid grid-cols-3 divide-x-2 divide-black">
-            <div>
-                <div><a href="{{ url('/restaurantmanager') }}"><img
-                            src="{{ Vite::asset('resources/images/manager.png') }}" alt="panda logo"
-                            class="mx-auto h-9 w-9" /></a></div>
-            </div>
-            <div>
-                @if ($user != null)
-                    <p> {{ $user->name }} </p>
-                @else
-                    <a href="{{ url('/auth') }}"><img src="{{ Vite::asset('resources/images/wultah.png') }}"
-                            alt="walter logo" class="ml-[20%] mr-2 h-9 w-9 inline-block" /><span
-                            class="">Bejelentkezés</span></a>
-                @endif
-            </div>
-            <div><a href="{{ url('/cart') }}"><img src="{{ Vite::asset('resources/images/basket.png') }}"
-                        alt="basket logo" class="ml-[20%] mr-2 h-9 w-9 inline-block" /><span
-                        class="">Kosár</span></a></div>
+    <nav class="navbar">
+        <!-- LOGO -->
+        <div class="compname">
+            <h1 class="logo">Food<span style="color:#273b91;">panda</span>Kópia</h1>
         </div>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links">
+            <!-- USING CHECKBOX HACK -->
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <!-- NAVIGATION MENUS -->
+            <div class="menu">
+                <li><a href="{{ url('/') }}">Kezdőoldal</a></li>
+                <li><a href="{{ url('/restaurants') }}">Éttermek</a></li>
+                <li><a href="{{ url('/restaurantmanager') }}">Étteremkezelő</a></li>
+                <li><a href="#">Rólunk</a></li>
+                @if ($user != null)
+                    <li class="services">
+                        <a href="#">{{ $user->name }}</a>
+                        <!-- DROPDOWN MENU -->
+                        <ul class="dropdown">
+                            <li>
+                                <form method="POST" action="{{ route('auth.logout') }}">
+                                    @csrf
+                                    <div>
+                                        <input type="submit" value="Kijelentkezés"><br>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li><a href="{{ url('auth') }}">Bejelentkezés</a></li>
+                @endif
+                <li><a href="{{ url('cart') }}">Kosár</a></li>
 
-    </div>
+            </div>
+
+
+        </ul>
+
+    </nav>
     <div>
         @yield('content')
     </div>
-    <form method="POST" action="{{ route('auth.logout') }}">
-        @csrf
-        <div>
-            <input type="submit" value="Kijelentkezés"><br>
-        </div>
-    </form>
     <div class="bg-sky-400">
         <span class="material-symbols-outlined">copyright</span>
         <p>Methlab™©®</p>
     </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
