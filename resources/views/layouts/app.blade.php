@@ -43,7 +43,7 @@
                 <li><a href="#">Rólunk</a></li>
                 @if ($user != null)
                     <li class="services">
-                        <a href="#">{{ $user->name }}</a>
+                        <p>{{$user->name }}</p>
                         <!-- DROPDOWN MENU -->
                         <ul class="dropdown">
                             <li>
