@@ -49,7 +49,7 @@ class OrderController extends Controller
             'postal_code' => ['required'],
             'city' => ['required'],
             'address' => ['required'],
-            'phone_nomber' => ['required'],
+            'phone_number' => ['required'],
         ]);
 
         $user = Auth::user();
