@@ -36,6 +36,10 @@ class RestaurantManagerController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'password' => ['required'],
+        ]);
+
         $restaurant = DB::table('restaurants')->where('restaurants.id', $request->restaurant_id)->first();
 
         if($restaurant->password == $request->password)

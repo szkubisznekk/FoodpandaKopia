@@ -6,7 +6,7 @@
             @csrf
             <div>
                 <label for="postal_code">Postal Code</label>
-                <input type="text" name="postal_code"><br>
+                <input type="number" name="postal_code"><br>
             </div>
             <div>
                 <label for="city">City</label>

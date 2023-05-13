@@ -14,6 +14,10 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'amount' => ['required', 'gt:0'],
+        ]);
+
         $food = DB::table('food')->where('food.id', $request->food_id)->first();
 
         session()->push('cart', ['food_id' => $request->food_id, 'food_name'=> $food->name, 'amount' => $request->amount, 'price' => $food->price * $request->amount]);
