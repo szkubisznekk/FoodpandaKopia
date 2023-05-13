@@ -26,17 +26,5 @@ class RestaurantsController extends Controller
             $array+=[$category->id=>$foods];
         }
         return view('restaurants')->with(['restaurants'=>Restaurant::all(), 'pickedRestaurant' => $restaurant_id, 'foods' => $array,'categories' => $food_cat]);
-
-        /*
-        SELECT DISTINCT food_categories.name, food_categories.id
-        FROM food_categories
-        INNER JOIN food ON food_categories.id = food.category_id
-        WHERE food.restaurant_id = $restaurant_id;
-
-        SELECT *
-        FROM food
-        WHERE food.category_id = $category_id;
-        */
-
     }
 }

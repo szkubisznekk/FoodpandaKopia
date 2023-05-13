@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Restaurant;
+use App\Models\Food;
 
 class RestaurantManagerController extends Controller
 {
@@ -25,7 +26,8 @@ class RestaurantManagerController extends Controller
             $restaurant = DB::table('restaurants')->where('restaurants.id', $restaurant_id)->first();
             if($restaurant->user_id == $user->id)
             {
-                return view('restaurantmanager', [strval($restaurant_id)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id]);
+                $foods = DB::table('food')->where('food.restaurant_id', $restaurant_id)->get();
+                return view('restaurantmanager', [strval($restaurant_id)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id,'foods' => $foods]);
             }
             else
             {
@@ -41,12 +43,29 @@ class RestaurantManagerController extends Controller
         ]);
 
         $restaurant = DB::table('restaurants')->where('restaurants.id', $request->restaurant_id)->first();
-
         if($restaurant->password == $request->password)
         {
             return redirect('restaurantmanager/' . strval($restaurant->id));
         }
 
         return redirect('restaurantmanager')->withErrors(['Nem jó a jelszó tetyám!']);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'food_category' => ['required'],
+            'name' => ['required'],
+            'description' => ['required'],
+            'price' => ['required'],
+        ]);
+        $order = Food::create([
+            'restaurant_id' => $request->restaurant_id,
+            'category_id' => $request->food_category,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+        return redirect('restaurantmanager/' . strval($request->restaurant_id));
     }
 }
