@@ -9,9 +9,26 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index($order_id = 0)
     {
-        return view('order');
+        if($order_id == 0)
+        {
+            return view('order')->with(['order' => null]);
+        }
+
+        $order = DB::table('orders')
+            ->join('statuses', 'statuses.id', '=', 'orders.status_id')
+            ->join('payment_methods', 'payment_methods.id', '=', 'orders.payment_method_id')
+            ->where('orders.id', $order_id)->first([
+                'orders.postal_code',
+                'orders.city',
+                'orders.address',
+                'orders.phone_number',
+                'payment_methods.name AS payment_method',
+                'statuses.name AS status',
+            ]);
+
+        return view('order', [strval($order_id)])->with(['order' => $order]);
     }
 
     public function confirm(Request $request)
@@ -20,10 +37,10 @@ class OrderController extends Controller
 
         if($user != null)
         {
-            return redirect('order');
+            return redirect('order')->with(['order' => null]);
         }
 
-        return redirect()->back()->withErrors(['Nem vagy bejelntkezve']);
+        return redirect()->back()->withErrors(['Nem vagy bejelentkezve']);
     }
 
     public function store(Request $request)
@@ -43,6 +60,6 @@ class OrderController extends Controller
 
         session()->forget('cart');
 
-        return redirect('/');
+        return redirect('order/' . strval($order->id));
     }
 }
