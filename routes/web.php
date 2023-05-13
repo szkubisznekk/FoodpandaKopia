@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RestaurantsController;
 use App\Http\Controllers\RestaurantManagerController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,6 @@ Route::post('/cart/emptyCart', [CartController::class, 'clear'])->name('restaura
 Route::get('/restaurantmanager/{restaurant_id?}', [RestaurantManagerController::class, 'index']);
 Route::post('/restaurantmanager/login', [RestaurantManagerController::class, 'login'])->name('restaurantmanager.login');
 
+Route::get('/order', [OrderController::class, 'index']);
+Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
+Route::post('/order/place', [OrderController::class, 'store'])->name('order.place');
