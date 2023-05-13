@@ -1,3 +1,5 @@
+@inject('payment_methods', 'App\Models\PaymentMethod')
+
 @extends('layouts.app')
 
 @section('content')
@@ -20,32 +22,14 @@
                 <label for="phone_number">Phone Number</label>
                 <input type="text" name="phone_number"><br>
             </div>
+
             <div>
-                <p> Payment Method </p>
-            </div>
-            <div>
-                <label for="mastercard">MasterCard</label>
-                <input type="radio" id="mastercard" name="payment_method" value="1"><br>
-            </div>
-            <div>
-                <label for="maestro">Maestro</label>
-                <input type="radio" id="maestro" name="payment_method" value="2"><br>
-            </div>
-            <div>
-                <label for="visa">VISA</label>
-                <input type="radio" id="visa" name="payment_method" value="3"><br>
-            </div>
-            <div>
-                <label for="szep">SZÉP</label>
-                <input type="radio" id="szep" name="payment_method" value="4"><br>
-            </div>
-            <div>
-                <label for="revolut">Revolut</label>
-                <input type="radio" id="revolut" name="payment_method" value="5"><br>
-            </div>
-            <div>
-                <label for="cash">Készpénz</label>
-                <input type="radio" id="cash" name="payment_method" value="6"><br>
+                <label for="payment_method"> Payment Method</label>
+                <select name="payment_method">
+                    @foreach ($payment_methods::all() as $payment_method)
+                        <option value="{{ $payment_method->id }}"> {{ $payment_method->name }} </option>
+                    @endforeach
+                </select>
             </div>
 
             <input type="submit" value="Rendelés">
