@@ -16,12 +16,17 @@ class RestaurantManagerController extends Controller
     {
         $user = Auth::user();
 
-        $restaurants = DB::table('restaurants')
-            ->where('restaurants.user_id', strval($user->id))->get();
+        $restaurants = ($user->id == 1)
+            ? DB::table('restaurants')->get()
+            : DB::table('restaurants')
+                ->where('restaurants.user_id', $user->id)->get();
 
-        $picked_restaurant = DB::table('restaurants')
-            ->where('restaurants.user_id', strval($user->id))
-            ->where('restaurants.id', strval($restaurant_id))->first();
+        $picked_restaurant = ($user->id == 1)
+            ? DB::table('restaurants')
+                ->where('restaurants.id', strval($restaurant_id))->first()
+            : DB::table('restaurants')
+                ->where('restaurants.user_id', $user->id)
+                ->where('restaurants.id', strval($restaurant_id))->first();
 
         if($restaurant_id == 0)
         {
@@ -35,7 +40,7 @@ class RestaurantManagerController extends Controller
             $restaurant = DB::table('restaurants')
                 ->where('restaurants.id', $restaurant_id)->first();
 
-            if($restaurant->user_id == $user->id && request('hash') == $restaurant->password)
+            if(($restaurant->user_id == $user->id || $user->id == 1) && request('hash') == $restaurant->password)
             {
                 $foods = DB::table('food')
                     ->join('food_categories','food.category_id','=','food_categories.id')
@@ -103,7 +108,7 @@ class RestaurantManagerController extends Controller
 
     public function register(Request $request)
     {
-        $user=Auth::user();
+        $user = Auth::user();
 
         $request->validate([
             'name' => ['required'],
