@@ -54,32 +54,44 @@
                 </div>
             @endforeach
         @endisset
-        <form method="POST" action="{{ route('restaurantmanager.place') }}">
-            @csrf
-            <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
-            <div>
-                <label for="food_category">Kategória</label>
-                <select name="food_category">
-                    @foreach ($FOOD_CATEGORIES::all() as $category)
-                        <option value="{{ $category->id }}"> {{ $category->name }} </option>
-                    @endforeach
-                </select>
+        <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+        <h1 class="text-center text-4xl">Étel regisztráció</h1>
+        <div class="flex items-center flex-wrap justify-around">
+            <div
+                class="w-1/2 font-regular relative rounded-lg m-8 hover:scale-110 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 opacity-100">
+                <div class="flex items-center flex-wrap justify-around">
+                    <form method="POST" action="{{ route('restaurantmanager.place') }}">
+                        @csrf
+                        <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
+                        <div class="mt-4 hover:scale-105">
+                            <label class="text-xl text-white mr-2" for="food_category">Kategória:</label>
+                            <select class="h-8 w-48 text-xl" name="food_category">
+                                @foreach ($FOOD_CATEGORIES::all() as $category)
+                                    <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="text-xl mt-4 hover:scale-105">
+                            <label class="text-xl text-white mr-12" for="name">Név:</label>
+                            <input class="h-8" type="text" name="name"><br>
+                        </div>
+                        <div class="text-xl mt-4 hover:scale-105">
+                            <label class="text-xl text-white mr-7" for="description">Leírás:</label>
+                            <input type="text" name="description"><br>
+                        </div>
+                        <div class="text-xl mt-4 hover:scale-105">
+                            <label class="text-white mr-16" for="price">Ár: </label>
+                            <input type="number" name="price"><br>
+                        </div>
+                        <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
+                        <div class="mt-8 text-center hover:scale-105 hover:text-pink-200">
+                            <input class="text-white font-bold outline-white rounded-lg outline outline-2 outline-offset-4"
+                                type="submit" value="Új étel leadása">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div>
-                <label for="name">Név:</label>
-                <input type="text" name="name"><br>
-            </div>
-            <div>
-                <label for="description">Leírás:</label>
-                <input type="text" name="description"><br>
-            </div>
-            <div>
-                <label for="price">Ár:</label>
-                <input type="number" name="price"><br>
-            </div>
-            <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
-            <input type="submit" value="Lead">
-        </form>
+        </div>
     @else
         <h1 class="text-center text-4xl mt-6">Bejelentkezés</h1>
         @if (isset($restaurants))
