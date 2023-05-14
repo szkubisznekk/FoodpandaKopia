@@ -40,13 +40,13 @@
             <!-- NAVIGATION MENUS -->
             <div class="menu">
                 <li><a href="{{ url('/restaurants') }}">Éttermek</a></li>
-                <li><a href="{{ url('/restaurantmanager') }}">Étteremkezelő</a></li>
                 <li><a href="#">Rólunk</a></li>
                 @if ($user != null)
                     <li class="services">
                         <p>{{ $user->name }}</p>
                         <!-- DROPDOWN MENU -->
                         <ul class="dropdown">
+                            <li><a href="{{ url('/restaurantmanager') }}">Étteremkezelő</a></li>
                             <li>
                                 <form method="POST" action="{{ route('auth.logout') }}">
                                     @csrf
