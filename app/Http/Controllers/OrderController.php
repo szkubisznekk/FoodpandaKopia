@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Order;
+use App\Models\Basket;
 
 class OrderController extends Controller
 {
@@ -20,6 +21,7 @@ class OrderController extends Controller
             ->join('statuses', 'statuses.id', '=', 'orders.status_id')
             ->join('payment_methods', 'payment_methods.id', '=', 'orders.payment_method_id')
             ->where('orders.id', $order_id)->first([
+                'orders.id',
                 'orders.postal_code',
                 'orders.city',
                 'orders.address',
@@ -28,7 +30,30 @@ class OrderController extends Controller
                 'statuses.name AS status_name',
             ]);
 
-        return view('order', [strval($order_id)])->with(['order' => $order]);
+        $orderedItems = DB::table('baskets')
+            ->join('orders', 'orders.id', '=', 'baskets.order_id')
+            ->join('food', 'food.id', '=', 'baskets.food_id')
+            ->where('order_id', $order->id)->get([
+                'baskets.id',
+                'baskets.order_id AS order_id',
+                'baskets.food_id AS food_id',
+                'food.name AS name',
+                'food.description AS description',
+                'food.price AS price',
+                'baskets.amount',
+            ]);
+
+        $price = 0;
+        foreach($orderedItems as $orderedItem)
+        {
+            $price += $orderedItem->amount * $orderedItem->price;
+        }
+
+        return view('order', [strval($order_id)])->with([
+            'order' => $order,
+            'orderedItems' => $orderedItems,
+            'price' => $price,
+        ]);
     }
 
     public function confirm(Request $request)
@@ -65,7 +90,17 @@ class OrderController extends Controller
             'phone_number' => $request->phone_number,
         ]);
 
+        $cart = session()->pull('cart', []);
         session()->forget('cart');
+
+        foreach($cart as $cartItem)
+        {
+            Basket::create([
+                'order_id' => $order->id,
+                'food_id' => $cartItem['food_id'],
+                'amount' => $cartItem['amount'],
+            ]);
+        }
 
         return redirect('order/' . strval($order->id));
     }
