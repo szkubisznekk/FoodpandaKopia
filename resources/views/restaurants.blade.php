@@ -6,7 +6,7 @@
             @foreach ($restaurants as $restaurant)
                 <div class="m-auto w-1/2 h-40">
                     <a href="{{ url('restaurants/' . strval($restaurant->id)) }}">
-                        <h2 class="text-center rounded-lg bg-blue-500 m-5 p-12 hover:scale-105 text-4xl font-sans font-bold uppercase hover:text-5xl hover:text-pink-300 text-white shadow-2xl shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        <h2 class="hover:border-pink-700 hover:border-2 text-center rounded-lg bg-gradient-to-bl from-pink-700 to-[#9118ed] m-5 p-12 hover:scale-105 text-4xl font-sans font-bold uppercase hover:text-5xl hover:text-pink-300 text-white shadow-2xl shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             data-ripple-light="true"> {{ $restaurant->name }} </h2>
                     </a>
                 </div>
@@ -47,7 +47,7 @@
                                 <div class="mt-4">
                                     <p class="hover:scale-105 outline-white rounded-lg outline outline-2 outline-offset-4 mx-40 text-center align-middle font-bold">
                                         {{ $food->price }} Ft</p>
-                                    <div class="mt-4 hover:scale-105">
+                                    <div class="mt-4 ml-4 hover:scale-105 ">
                                         <label class="font-bold">Darab: </label>
                                         <input
                                             class="inline-block text-bs font-bold bg-pink-300 border border-gray-300 text-gray-900 rounded-lg focus:ring-pink-500 focus:border-pink-500 w-[80] p-2.5 dark:bg-pink-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"
