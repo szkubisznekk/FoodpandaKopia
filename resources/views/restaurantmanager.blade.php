@@ -42,7 +42,7 @@
                 <hr class="w-1/2 h-1 mx-auto my-2 bg-gray-100 border-0 rounded md:my-2 dark:bg-gray-700">
             @endforeach
         @endisset
-        <h2 class="mt-12 text-4xl underline underline-offset-auto">Jelenlegi ételek az étteremben:</h2>
+        <h2 class="mt-12 text-xl underline underline-offset-auto">Jelenlegi ételek az étteremben:</h2>
         @isset($foods)
             <div class="flex items-center flex-wrap justify-around">
                 @foreach ($foods as $food)
@@ -118,7 +118,7 @@
                             <h2 class="align-middle text-center mb-4 font-bold text-4xl">{{ $restaurant->name }}</h2>
                             <form method="POST" action="{{ route('restaurantmanager.login') }}">
                                 @csrf
-                                <div class="hover:scale-105">
+                                <div class="ml-8 hover:scale-105">
                                     <label class="mr-2" for="password">
                                         Jelszó:
                                     </label>
