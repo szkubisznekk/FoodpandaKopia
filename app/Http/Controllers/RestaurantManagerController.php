@@ -120,4 +120,12 @@ class RestaurantManagerController extends Controller
         $link = "restaurantmanager/{$request->restaurant_id}?hash={$restaurant->password}";
         return redirect($link);
     }
+
+    public function deletefood(Request $request)
+    {
+        DB::table('food')->delete($request->food_id);
+        $hash = request('hash');
+        $link = "restaurantmanager/{$request->restaurant_id}?hash={$hash}";
+        return redirect($link);
+    }
 }

@@ -13,6 +13,11 @@
                     <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
                     <p>{{ $food->description }} </p>
                     <p>{{ $food->price }} Ft </p>
+                    <form method="POST" action="{{ route('restaurantmanager.deletefood') }}" class="bg-black w-28 text-center">
+                        @csrf
+                        <input type="hidden" name="food_id" value="{{ $food->id }}">
+                        <input type="submit" value="TÖRLÉS">
+                    </form>
                 </div>
             @endforeach
         @endisset
@@ -37,7 +42,7 @@
             </div>
             <div>
                 <label for="price">Ár:</label>
-                <input type="numnber" name="price"><br>
+                <input type="number" name="price"><br>
             </div>
             <input type="submit" value="Lead">
         </form>
