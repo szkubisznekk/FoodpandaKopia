@@ -59,12 +59,14 @@ class RestaurantManagerController extends Controller
                     ->join('baskets', 'baskets.order_id', '=', 'orders.id')
                     ->join('food', 'food.id', '=', 'baskets.food_id')
                     ->where('food.restaurant_id', $restaurant_id)
-                    ->where('status_id', 4)->get([
+                    ->whereIn('status_id', [2, 3, 4])->get([
                         'orders.id',
                         'orders.postal_code',
                         'orders.city',
                         'orders.address',
                         'orders.phone_number',
+                        'orders.payment_method_id AS payment_method_id',
+                        'orders.status_id AS status_id',
                         'payment_methods.name AS payment_method_name',
                         'statuses.name AS status_name',
                     ])->unique();
@@ -166,5 +168,16 @@ class RestaurantManagerController extends Controller
         $link = "restaurantmanager/{$request->restaurant_id}?hash={$request->hash}";
 
         return redirect($link);
+    }
+
+    public function changeOrderStatus(Request $request)
+    {
+        DB::table('orders')
+            ->where('orders.id', $request->order_id)
+            ->update([
+                'orders.status_id' => $request->order_status_id - 1,
+            ]);
+
+        return redirect()->back();
     }
 }

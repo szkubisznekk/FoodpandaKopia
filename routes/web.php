@@ -38,6 +38,7 @@ Route::post('/restaurantmanager/login', [RestaurantManagerController::class, 'lo
 Route::post('/restaurantmanager/place', [RestaurantManagerController::class, 'store'])->name('restaurantmanager.place');
 Route::post('/restaurantmanager/register', [RestaurantManagerController::class, 'register'])->name('restaurantmanager.register');
 Route::post('/restaurantmanager/deletefood', [RestaurantManagerController::class, 'deletefood'])->name('restaurantmanager.deletefood');
+Route::post('/restaurantmanager/changeOrderStatus', [RestaurantManagerController::class, 'changeOrderStatus'])->name('restaurantmanager.changeOrderStatus');
 
 Route::get('/order/{order_id?}', [OrderController::class, 'index']);
 Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');

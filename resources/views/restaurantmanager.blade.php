@@ -26,6 +26,12 @@
                             </div>
                         @endforeach
                     </div>
+                    <form method="POST" action="{{ route('restaurantmanager.changeOrderStatus') }}">
+                        @csrf
+                        <input type="hidden" name="order_id" value="{{ $order->id }}">
+                        <input type="hidden" name="order_status_id" value="{{ $order->status_id }}">
+                        <input type="submit" value="CONFIRM">
+                    </form>
                 </div>
             @endforeach
         @endisset
@@ -37,7 +43,8 @@
                     <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
                     <p>{{ $food->description }} </p>
                     <p>{{ $food->price }} Ft </p>
-                    <form method="POST" action="{{ route('restaurantmanager.deletefood') }}" class="bg-black w-28 text-center">
+                    <form method="POST" action="{{ route('restaurantmanager.deletefood') }}"
+                        class="bg-black w-28 text-center">
                         @csrf
                         <input type="hidden" name="food_id" value="{{ $food->id }}">
                         <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
