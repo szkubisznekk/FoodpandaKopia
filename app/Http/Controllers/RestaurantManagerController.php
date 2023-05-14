@@ -53,10 +53,44 @@ class RestaurantManagerController extends Controller
                         'food.price',
                     ]);
 
+                $orders = DB::table('orders')
+                    ->join('statuses', 'statuses.id', '=', 'orders.status_id')
+                    ->join('payment_methods', 'payment_methods.id', '=', 'orders.payment_method_id')
+                    ->join('baskets', 'baskets.order_id', '=', 'orders.id')
+                    ->join('food', 'food.id', '=', 'baskets.food_id')
+                    ->where('food.restaurant_id', $restaurant_id)
+                    ->where('status_id', 4)->get([
+                        'orders.id',
+                        'orders.postal_code',
+                        'orders.city',
+                        'orders.address',
+                        'orders.phone_number',
+                        'payment_methods.name AS payment_method_name',
+                        'statuses.name AS status_name',
+                    ])->unique();
+
+                $orderedItems = [];
+                foreach($orders as $order)
+                {
+                    $orderedItemsInOrder = DB::table('baskets')
+                        ->join('food', 'food.id', '=', 'baskets.food_id')
+                        ->where('baskets.order_id', $order->id)
+                        ->where('food.restaurant_id', $restaurant_id)->get([
+                            'food.id',
+                            'food.name',
+                            'food.price',
+                            'baskets.amount',
+                        ]);
+
+                    $orderedItems += [$order->id => $orderedItemsInOrder];
+                }
+
                 return view('restaurantmanager', [strval($restaurant_id)])->with([
                     'restaurants' => $restaurants,
                     'picked_restaurant' => $picked_restaurant,
                     'foods' => $foods,
+                    'orders' => $orders,
+                    'orderedItems' => $orderedItems,
                 ]);
             }
             else

@@ -5,6 +5,30 @@
 @section('content')
     @if (isset($picked_restaurant))
         <h1> {{ $picked_restaurant->name }} </h1>
+        <h2> Jelenlegi aktív rendelések: </h2>
+        @isset($orders)
+            @foreach ($orders as $order)
+                <div>
+                    <p> Irányítószám: {{ $order->postal_code }} </p>
+                    <p> Város: {{ $order->city }} </p>
+                    <p> Cím: {{ $order->address }} </p>
+                    <p> Telefon: {{ $order->phone_number }} </p>
+                    <p> Fizetési mód: {{ $order->payment_method_name }} </p>
+                    <p> Rendelés státusza: {{ $order->status_name }} </p>
+                    <div>
+                        @foreach ($orderedItems[$order->id] as $orderedItem)
+                            <div
+                                class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
+                                <h2 class="pl-10 pb-1">{{ $orderedItem->name }} </h2>
+                                <p> {{ $orderedItem->name }} </p>
+                                <p> {{ $orderedItem->price }} Ft </p>
+                                <p> {{ $orderedItem->amount }} db </p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        @endisset
         <h2>Jelenlegi ételek az étteremben:</h2>
         @isset($foods)
             @foreach ($foods as $food)
