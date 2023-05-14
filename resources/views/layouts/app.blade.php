@@ -80,11 +80,7 @@
     <div>
         @yield('content')
     </div>
-    <div class="bg-sky-400">
-        <span class="material-symbols-outlined">copyright</span>
-        <p>Methlab™©®</p>
-    </div>
-    <footer class="bg-white">
+    <footer>
         <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div class="md:flex md:justify-between">
               <div class="mb-6 md:mb-0">
