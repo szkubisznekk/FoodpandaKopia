@@ -71,12 +71,10 @@ class RestaurantManagerController extends Controller
 
         $restaurant = DB::table('restaurants')
             ->where('restaurants.id', $request->restaurant_id)->first();
-
-        if($restaurant->password == $request->password)
+        if(Hash::check($request->password, $restaurant->password))
         {
             return redirect('restaurantmanager/' . strval($restaurant->id));
         }
-
         return redirect('restaurantmanager')->withErrors(['Nem jó a jelszó tetyám!']);
     }
 
@@ -110,7 +108,7 @@ class RestaurantManagerController extends Controller
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'user_id' => $user->id,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
         return redirect('restaurantmanager/' . strval($restaurant->id));
     }
