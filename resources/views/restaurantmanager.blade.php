@@ -3,55 +3,22 @@
 @extends('layouts.app')
 
 @section('content')
-    @if ($pickedRestaurant == 0)
-        @if ($restaurants != null)
-            @foreach ($restaurants as $restaurant)
-                <p>
-                    {{ $restaurant->name }}
-                </p>
-                <form method="POST" action="{{ route('restaurantmanager.login') }}">
-                    @csrf
-                    <div>
-                        <label for="password">
-                            Jelszó:
-                        </label>
-                        <input type="text" name="password">
-                    </div>
-                    <div>
-                        <input type="submit" value="BEJELENTKEZÉS">
-                    </div>
-                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
-                </form>
-            @endforeach
-            <form method="POST" action="{{ route('restaurantmanager.register') }}">
-                @csrf
-                <div>
-                    <label for="name">Name</label>
-                    <input type="text" name="name"><br>
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input type="text" name="password"><br>
-                </div>
-
-                <div>
-                    <input type="submit" value="REGISZTRÁCIÓ"><br>
-                </div>
-            </form>
-        @else
-            <h2>Nincs éttermed testvér, vegyél.</h2>
-        @endif
-    @else
-        <h1>Nagyon sikeresen bejelentkezdtél grat.</h1>
+    @if (isset($picked_restaurant))
+        <h1> {{ $picked_restaurant->name }} </h1>
         <h2>Jelenlegi ételek az étteremben:</h2>
         @isset($foods)
             @foreach ($foods as $food)
-                <p>{{ $food->name }}--------{{ $food->food_category_name }}</p>
+                <div
+                    class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
+                    <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
+                    <p>{{ $food->description }} </p>
+                    <p>{{ $food->price }} Ft </p>
+                </div>
             @endforeach
         @endisset
         <form method="POST" action="{{ route('restaurantmanager.place') }}">
             @csrf
-            <input type="hidden" name="restaurant_id" value="{{ $pickedRestaurant }}">
+            <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
             <div>
                 <label for="food_category">Kategória</label>
                 <select name="food_category">
@@ -74,5 +41,41 @@
             </div>
             <input type="submit" value="Lead">
         </form>
+    @else
+        @if (isset($restaurants))
+            @foreach ($restaurants as $restaurant)
+                <p>
+                    {{ $restaurant->name }}
+                </p>
+                <form method="POST" action="{{ route('restaurantmanager.login') }}">
+                    @csrf
+                    <div>
+                        <label for="password">
+                            Jelszó:
+                        </label>
+                        <input type="text" name="password">
+                    </div>
+                    <div>
+                        <input type="submit" value="BEJELENTKEZÉS">
+                    </div>
+                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                </form>
+            @endforeach
+        @endif
     @endif
+    <form method="POST">
+        @csrf
+        <input type="hidden" name="user_id" value="{{ $user->id }}">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name"><br>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text" name="password"><br>
+        </div>
+        <div>
+            <input type="submit" value="REGISZTRÁCIÓ"><br>
+        </div>
+    </form>
 @endsection

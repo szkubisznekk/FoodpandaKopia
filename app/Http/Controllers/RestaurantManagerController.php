@@ -19,11 +19,15 @@ class RestaurantManagerController extends Controller
         $restaurants = DB::table('restaurants')
             ->where('restaurants.user_id', strval($user->id))->get();
 
+        $picked_restaurant = DB::table('restaurants')
+            ->where('restaurants.user_id', strval($user->id))
+            ->where('restaurants.id', strval($restaurant_id))->first();
+
         if($restaurant_id == 0)
         {
             return view('restaurantmanager')->with([
                 'restaurants' => $restaurants,
-                'pickedRestaurant' => $restaurant_id
+                'picked_restaurant' => $picked_restaurant
             ]);
         }
         else
@@ -46,7 +50,7 @@ class RestaurantManagerController extends Controller
 
                 return view('restaurantmanager', [strval($restaurant_id)])->with([
                     'restaurants' => $restaurants,
-                    'pickedRestaurant' => $restaurant_id,
+                    'picked_restaurant' => $picked_restaurant,
                     'foods' => $foods
                 ]);
             }
@@ -54,7 +58,6 @@ class RestaurantManagerController extends Controller
             {
                 return view('restaurantmanager')->with([
                     'restaurants' => $restaurants,
-                    'pickedRestaurant' => 0,
                 ])->withErrors(['Nem vagy bejelentkezve tetyám!']);
             }
         }
