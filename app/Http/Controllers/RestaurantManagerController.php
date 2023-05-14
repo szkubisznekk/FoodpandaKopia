@@ -35,7 +35,7 @@ class RestaurantManagerController extends Controller
             $restaurant = DB::table('restaurants')
                 ->where('restaurants.id', $restaurant_id)->first();
 
-            if($restaurant->user_id == $user->id)
+            if($restaurant->user_id == $user->id && request('hash') == $restaurant->password)
             {
                 $foods = DB::table('food')
                     ->join('food_categories','food.category_id','=','food_categories.id')
@@ -71,9 +71,11 @@ class RestaurantManagerController extends Controller
 
         $restaurant = DB::table('restaurants')
             ->where('restaurants.id', $request->restaurant_id)->first();
+
         if(Hash::check($request->password, $restaurant->password))
         {
-            return redirect('restaurantmanager/' . strval($restaurant->id));
+            $link = "restaurantmanager/{$request->restaurant_id}?hash={$restaurant->password}";
+            return redirect($link);
         }
         return redirect('restaurantmanager')->withErrors(['Nem jó a jelszó tetyám!']);
     }
@@ -95,21 +97,27 @@ class RestaurantManagerController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect('restaurantmanager/' . strval($request->restaurant_id));
+        $hash = request('hash');
+        $link = "restaurantmanager/{$request->restaurant_id}?hash={$hash}";
+        return redirect($link);
     }
 
     public function register(Request $request)
     {
+        $user=Auth::user();
+
         $request->validate([
             'name' => ['required'],
             'password' => ['required', 'min:8'],
         ]);
-        $user=Auth::user();
+
         $restaurant = Restaurant::create([
             'name' => $request->name,
             'user_id' => $user->id,
             'password' => Hash::make($request->password),
         ]);
-        return redirect('restaurantmanager/' . strval($restaurant->id));
+
+        $link = "restaurantmanager/{$request->restaurant_id}?hash={$restaurant->password}";
+        return redirect($link);
     }
 }
