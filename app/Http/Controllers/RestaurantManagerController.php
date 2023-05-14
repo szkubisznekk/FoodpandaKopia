@@ -97,8 +97,7 @@ class RestaurantManagerController extends Controller
             'price' => $request->price,
         ]);
 
-        $hash = request('hash');
-        $link = "restaurantmanager/{$request->restaurant_id}?hash={$hash}";
+        $link = "restaurantmanager/{$request->restaurant_id}?hash={$request->hash}";
         return redirect($link);
     }
 
@@ -124,8 +123,9 @@ class RestaurantManagerController extends Controller
     public function deletefood(Request $request)
     {
         DB::table('food')->delete($request->food_id);
-        $hash = request('hash');
-        $link = "restaurantmanager/{$request->restaurant_id}?hash={$hash}";
+
+        $link = "restaurantmanager/{$request->restaurant_id}?hash={$request->hash}";
+
         return redirect($link);
     }
 }
