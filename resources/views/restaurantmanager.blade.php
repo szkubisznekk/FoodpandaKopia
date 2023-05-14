@@ -62,10 +62,8 @@
                 </form>
             @endforeach
         @endif
-    @endif
-    <form method="POST">
+    <form method="POST" action="{{ route('restaurantmanager.register') }}">
         @csrf
-        <input type="hidden" name="user_id" value="{{ $user->id }}">
         <div>
             <label for="name">Name</label>
             <input type="text" name="name"><br>
@@ -78,4 +76,5 @@
             <input type="submit" value="REGISZTRÁCIÓ"><br>
         </div>
     </form>
+    @endif
 @endsection

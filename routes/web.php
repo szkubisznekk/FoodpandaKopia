@@ -36,6 +36,7 @@ Route::post('/cart/emptyCart', [CartController::class, 'clear'])->name('cart.emp
 Route::get('/restaurantmanager/{restaurant_id?}', [RestaurantManagerController::class, 'index']);
 Route::post('/restaurantmanager/login', [RestaurantManagerController::class, 'login'])->name('restaurantmanager.login');
 Route::post('/restaurantmanager/place', [RestaurantManagerController::class, 'store'])->name('restaurantmanager.place');
+Route::post('/restaurantmanager/register', [RestaurantManagerController::class, 'register'])->name('restaurantmanager.register');
 
 Route::get('/order/{order_id?}', [OrderController::class, 'index']);
 Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');

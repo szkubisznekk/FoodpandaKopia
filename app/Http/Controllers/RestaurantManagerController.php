@@ -27,7 +27,7 @@ class RestaurantManagerController extends Controller
         {
             return view('restaurantmanager')->with([
                 'restaurants' => $restaurants,
-                'picked_restaurant' => $picked_restaurant
+                'picked_restaurant' => $picked_restaurant,
             ]);
         }
         else
@@ -51,7 +51,7 @@ class RestaurantManagerController extends Controller
                 return view('restaurantmanager', [strval($restaurant_id)])->with([
                     'restaurants' => $restaurants,
                     'picked_restaurant' => $picked_restaurant,
-                    'foods' => $foods
+                    'foods' => $foods,
                 ]);
             }
             else
@@ -98,5 +98,20 @@ class RestaurantManagerController extends Controller
         ]);
 
         return redirect('restaurantmanager/' . strval($request->restaurant_id));
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => ['required'],
+            'password' => ['required', 'min:8'],
+        ]);
+        $user=Auth::user();
+        $restaurant = Restaurant::create([
+            'name' => $request->name,
+            'user_id' => $user->id,
+            'password' => $request->password,
+        ]);
+        return redirect('restaurantmanager/' . strval($restaurant->id));
     }
 }
