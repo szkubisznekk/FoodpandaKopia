@@ -16,6 +16,8 @@
                     <form method="POST" action="{{ route('restaurantmanager.deletefood') }}" class="bg-black w-28 text-center">
                         @csrf
                         <input type="hidden" name="food_id" value="{{ $food->id }}">
+                        <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
+                        <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
                         <input type="submit" value="TÖRLÉS">
                     </form>
                 </div>
@@ -44,6 +46,7 @@
                 <label for="price">Ár:</label>
                 <input type="number" name="price"><br>
             </div>
+            <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
             <input type="submit" value="Lead">
         </form>
     @else
@@ -67,19 +70,19 @@
                 </form>
             @endforeach
         @endif
-    <form method="POST" action="{{ route('restaurantmanager.register') }}">
-        @csrf
-        <div>
-            <label for="name">Name</label>
-            <input type="text" name="name"><br>
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="text" name="password"><br>
-        </div>
-        <div>
-            <input type="submit" value="REGISZTRÁCIÓ"><br>
-        </div>
-    </form>
+        <form method="POST" action="{{ route('restaurantmanager.register') }}">
+            @csrf
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name"><br>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="text" name="password"><br>
+            </div>
+            <div>
+                <input type="submit" value="REGISZTRÁCIÓ"><br>
+            </div>
+        </form>
     @endif
 @endsection
