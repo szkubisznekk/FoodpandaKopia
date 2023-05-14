@@ -23,6 +23,21 @@
                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                 </form>
             @endforeach
+            <form method="POST" action="{{ route('restaurantmanager.register') }}">
+                @csrf
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name"><br>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="text" name="password"><br>
+                </div>
+
+                <div>
+                    <input type="submit" value="REGISZTRÁCIÓ"><br>
+                </div>
+            </form>
         @else
             <h2>Nincs éttermed testvér, vegyél.</h2>
         @endif
