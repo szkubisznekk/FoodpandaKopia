@@ -2,12 +2,16 @@
 
 @section('content')
     @if ($pickedRestaurant == 0)
-        @foreach ($restaurants as $restaurant)
-            <a href="{{ url('restaurants/' . strval($restaurant->id)) }}">
-                <h2 class="middle none center mr-4 rounded-lg bg-blue-500 my-5 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    data-ripple-light="true"> {{ $restaurant->name }} </h2>
-            </a>
-        @endforeach
+        <div class="flex items-center flex-wrap justify-around">
+            @foreach ($restaurants as $restaurant)
+                <div class="m-auto w-1/2 h-40">
+                    <a href="{{ url('restaurants/' . strval($restaurant->id)) }}">
+                        <h2 class="text-center rounded-lg bg-blue-500 m-5 p-12 hover:scale-105 text-4xl font-sans font-bold uppercase hover:text-5xl hover:text-pink-300 text-white shadow-2xl shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            data-ripple-light="true"> {{ $restaurant->name }} </h2>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     @else
         <div>
             <form action="{{ url('restaurants/' . strval($pickedRestaurant)) }}">
