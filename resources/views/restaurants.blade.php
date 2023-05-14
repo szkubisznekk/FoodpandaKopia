@@ -38,16 +38,16 @@
                     <div class="m-auto w-1/2 h-auto">
                         <div
                             class=" font-regular relative rounded-lg m-1 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
-                            <h2 class="text-center pb-1 font-bold text-lg">{{ $food->name }} </h2>
+                            <h2 class="hover:underline hover:underline-offset-auto hover:scale-105 text-center pb-1 font-bold text-xl">{{ $food->name }} </h2>
                             <p class="text-justify">{{ $food->description }} </p>
                             <form method="POST", action="{{ route('cart.addToCart') }}">
                                 @csrf
                                 <input type="hidden" name="food_id", value="{{ $food->id }}">
 
                                 <div class="mt-4">
-                                    <p class="rounded-lg text-lg border-black border-2 mx-40 text-center align-middle font-bold">
+                                    <p class="hover:scale-105 outline-white rounded-lg outline outline-2 outline-offset-4 mx-40 text-center align-middle font-bold">
                                         {{ $food->price }} Ft</p>
-                                    <div class="mt-4">
+                                    <div class="mt-4 hover:scale-105">
                                         <label class="font-bold">Darab: </label>
                                         <input
                                             class="inline-block text-bs font-bold bg-pink-300 border border-gray-300 text-gray-900 rounded-lg focus:ring-pink-500 focus:border-pink-500 w-[80] p-2.5 dark:bg-pink-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500"

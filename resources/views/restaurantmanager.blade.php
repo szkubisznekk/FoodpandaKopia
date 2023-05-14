@@ -4,55 +4,70 @@
 
 @section('content')
     @if (isset($picked_restaurant))
-        <h1> {{ $picked_restaurant->name }} </h1>
-        <h2> Jelenlegi aktív rendelések: </h2>
+        <h1 class="mt-4  text-center text-6xl">{{ $picked_restaurant->name }}</h1>
+        <h2 class="text-4xl mb-4 underline underline-offset-auto"> Jelenlegi aktív rendelések: </h2>
         @isset($orders)
             @foreach ($orders as $order)
-                <div>
-                    <p> Irányítószám: {{ $order->postal_code }} </p>
-                    <p> Város: {{ $order->city }} </p>
-                    <p> Cím: {{ $order->address }} </p>
-                    <p> Telefon: {{ $order->phone_number }} </p>
-                    <p> Fizetési mód: {{ $order->payment_method_name }} </p>
-                    <p> Rendelés státusza: {{ $order->status_name }} </p>
+                <div class="flex items-center flex-wrap justify-around">
+                    <div class="w-1/2">
+                        <p> Irányítószám: {{ $order->postal_code }} </p>
+                        <p> Város: {{ $order->city }} </p>
+                        <p> Cím: {{ $order->address }} </p>
+                        <p> Telefon: {{ $order->phone_number }} </p>
+                        <p> Fizetési mód: {{ $order->payment_method_name }} </p>
+                        <p class="font-bold"> Rendelés státusza: {{ $order->status_name }} </p>
+                    </div>
                     <div>
                         @foreach ($orderedItems[$order->id] as $orderedItem)
                             <div
-                                class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
-                                <h2 class="pl-10 pb-1">{{ $orderedItem->name }} </h2>
-                                <p> {{ $orderedItem->name }} </p>
-                                <p> {{ $orderedItem->price }} Ft </p>
-                                <p> {{ $orderedItem->amount }} db </p>
+                                class=" font-regular relative mb-2 block w-80 rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-2 text-base leading-5 text-white opacity-100">
+                                <h2 class="underline underline-offset-auto pb-1 text-center text-xl font-bold ">
+                                    {{ $orderedItem->name }} </h2>
+                                <p class="pl-2"> {{ $orderedItem->price }} Ft </p>
+                                <p class="pl-2"> {{ $orderedItem->amount }} db </p>
                             </div>
                         @endforeach
                     </div>
-                    <form method="POST" action="{{ route('restaurantmanager.changeOrderStatus') }}">
-                        @csrf
-                        <input type="hidden" name="order_id" value="{{ $order->id }}">
-                        <input type="hidden" name="order_status_id" value="{{ $order->status_id }}">
-                        <input type="submit" value="CONFIRM">
-                    </form>
+                    <div>
+                        <form method="POST" action="{{ route('restaurantmanager.changeOrderStatus') }}">
+                            @csrf
+                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                            <input type="hidden" name="order_status_id" value="{{ $order->status_id }}">
+                            <input type="submit"
+                                class="hover:border-2 hover:border-pink-800 hover:text-pink-500 hover:bg-gray-200 ml-10 text-bs middle none center rounded-lg bg-pink-500 py-4 px-6 font-sans font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                value="ELFOGAD">
+                        </form>
+                    </div>
                 </div>
+                <hr class="w-1/2 h-1 mx-auto my-2 bg-gray-100 border-0 rounded md:my-2 dark:bg-gray-700">
             @endforeach
         @endisset
-        <h2>Jelenlegi ételek az étteremben:</h2>
+        <h2 class="mt-12 text-4xl underline underline-offset-auto">Jelenlegi ételek az étteremben:</h2>
         @isset($foods)
-            @foreach ($foods as $food)
-                <div
-                    class="font-regular relative mb-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
-                    <h2 class="pl-10 pb-1">{{ $food->name }} </h2>
-                    <p>{{ $food->description }} </p>
-                    <p>{{ $food->price }} Ft </p>
-                    <form method="POST" action="{{ route('restaurantmanager.deletefood') }}"
-                        class="bg-black w-28 text-center">
-                        @csrf
-                        <input type="hidden" name="food_id" value="{{ $food->id }}">
-                        <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
-                        <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
-                        <input type="submit" value="TÖRLÉS">
-                    </form>
-                </div>
-            @endforeach
+            <div class="flex items-center flex-wrap justify-around">
+                @foreach ($foods as $food)
+                    <div class="w-1/4 h-64 p-4 relative">
+                        <div
+                            class="hover:scale-105 hover:border-red-800 hover:border-2 h-full font-regular relative m-1 p-4 block w-full rounded-lg bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] text-base leading-5 text-white opacity-100">
+                            <h2 class="underline underline-offset-auto pb-1 text-center text-xl font-bold ">{{ $food->name }}
+                            </h2>
+                            <p class="mb-2">{{ $food->description }} </p>
+                            <p class="mb-2">{{ $food->price }} Ft </p>
+                            <div class="text-right pr-2 absolute inset-x-0 bottom-0 h-16">
+                                <form method="POST" action="{{ route('restaurantmanager.deletefood') }}">
+                                    @csrf
+                                    <input type="hidden" name="food_id" value="{{ $food->id }}">
+                                    <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
+                                    <input type="hidden" name="hash" value="{{ $picked_restaurant->password }}">
+                                    <input type="submit"
+                                        class="text-center hover:border-2 hover:border-red-800 hover:text-red-800 hover:bg-gray-200 ml-10 text-bs rounded-lg bg-red-500 py-4 px-6 font-sans font-bold uppercase text-white transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                        value="TÖRLÉS">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         @endisset
         <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
         <h1 class="text-center text-4xl">Étel regisztráció</h1>
