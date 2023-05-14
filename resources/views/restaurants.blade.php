@@ -10,7 +10,7 @@
         @endforeach
     @else
         <div>
-            <form action="/restaurants/{{ $pickedRestaurant }}">
+            <form action="{{ url('restaurants/' . strval($pickedRestaurant)) }}">
                 <div class="relative border-2 border-gray-100 m-4 rounded-lg">
                     <div class="absolute top-4 left-3">
                         <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
@@ -36,7 +36,7 @@
                     <p>{{ $food->description }} </p>
                     <p>{{ $food->price }} Ft </p>
 
-                    <form method="POST", action="{{ route('restaurants.addToCart') }}">
+                    <form method="POST", action="{{ route('cart.addToCart') }}">
                         @csrf
                         <input type="hidden" name="food_id", value="{{ $food->id }}">
 

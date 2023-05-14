@@ -13,7 +13,7 @@ class OrderController extends Controller
     {
         if($order_id == 0)
         {
-            return view('order')->with(['order' => null]);
+            return view('order');
         }
 
         $order = DB::table('orders')
@@ -24,8 +24,8 @@ class OrderController extends Controller
                 'orders.city',
                 'orders.address',
                 'orders.phone_number',
-                'payment_methods.name AS payment_method',
-                'statuses.name AS status',
+                'payment_methods.name AS payment_method_name',
+                'statuses.name AS status_name',
             ]);
 
         return view('order', [strval($order_id)])->with(['order' => $order]);
@@ -37,7 +37,7 @@ class OrderController extends Controller
 
         if($user != null)
         {
-            return redirect('order')->with(['order' => null]);
+            return redirect('order');
         }
 
         return redirect()->back()->withErrors(['Nem vagy bejelentkezve']);

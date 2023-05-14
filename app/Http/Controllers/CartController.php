@@ -18,9 +18,15 @@ class CartController extends Controller
             'amount' => ['required', 'gt:0'],
         ]);
 
-        $food = DB::table('food')->where('food.id', $request->food_id)->first();
+        $food = DB::table('food')
+            ->where('food.id', $request->food_id)->first();
 
-        session()->push('cart', ['food_id' => $request->food_id, 'food_name'=> $food->name, 'amount' => $request->amount, 'price' => $food->price * $request->amount]);
+        session()->push('cart', [
+            'food_id' => $request->food_id,
+            'food_name'=> $food->name,
+            'amount' => $request->amount,
+            'price' => $food->price * $request->amount
+        ]);
 
         return redirect()->back();
     }

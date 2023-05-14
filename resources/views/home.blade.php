@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
     <p class="mx-64 text-center text-purple-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pretium eu
         leo vitae hendrerit. Nullam lacinia neque et risus feugiat, vel blandit ante mollis. Nunc ac sagittis lacus, in
         tincidunt purus. Suspendisse gravida libero quis viverra rhoncus. Suspendisse potenti. Pellentesque ligula velit,

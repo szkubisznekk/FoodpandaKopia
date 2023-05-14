@@ -29,9 +29,9 @@ Route::post('/auth/lougout', [Authcontroller::class, 'destroy'])->middleware('au
 Route::get('/restaurants/{restaurant_id?}', [RestaurantsController::class, 'index']);
 
 Route::get('/cart', [CartController::class, 'index']);
-Route::post('/cart/addToCart', [CartController::class, 'store'])->name('restaurants.addToCart');
-Route::post('/cart/removeFromCart', [CartController::class, 'destroy'])->name('restaurants.removeFromCart');
-Route::post('/cart/emptyCart', [CartController::class, 'clear'])->name('restaurants.emptyCart');
+Route::post('/cart/addToCart', [CartController::class, 'store'])->name('cart.addToCart');
+Route::post('/cart/removeFromCart', [CartController::class, 'destroy'])->name('cart.removeFromCart');
+Route::post('/cart/emptyCart', [CartController::class, 'clear'])->name('cart.emptyCart');
 
 Route::get('/restaurantmanager/{restaurant_id?}', [RestaurantManagerController::class, 'index']);
 Route::post('/restaurantmanager/login', [RestaurantManagerController::class, 'login'])->name('restaurantmanager.login');

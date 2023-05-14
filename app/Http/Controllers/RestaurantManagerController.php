@@ -15,31 +15,47 @@ class RestaurantManagerController extends Controller
     public function index($restaurant_id = 0)
     {
         $user = Auth::user();
-        $restaurants = DB::table('restaurants')->where('restaurants.user_id', strval($user->id))->get();
+
+        $restaurants = DB::table('restaurants')
+            ->where('restaurants.user_id', strval($user->id))->get();
 
         if($restaurant_id == 0)
         {
-            return view('restaurantmanager')->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id]);
+            return view('restaurantmanager')->with([
+                'restaurants' => $restaurants,
+                'pickedRestaurant' => $restaurant_id
+            ]);
         }
         else
         {
-            $restaurant = DB::table('restaurants')->where('restaurants.id', $restaurant_id)->first();
+            $restaurant = DB::table('restaurants')
+                ->where('restaurants.id', $restaurant_id)->first();
+
             if($restaurant->user_id == $user->id)
             {
-                $foods = DB::table('food')->join('food_categories','food.category_id','=','food_categories.id')->where('food.restaurant_id', $restaurant_id)->get([
-                    'food_categories.id AS food_category_id',
-                    'food_categories.name AS food_category_name',
-                    'food.id',
-                    'food.name',
-                    'food.description',
-                    'food.price',
-                ]
-                );
-                return view('restaurantmanager', [strval($restaurant_id)])->with(['restaurants' => $restaurants, 'pickedRestaurant' => $restaurant_id,'foods' => $foods]);
+                $foods = DB::table('food')
+                    ->join('food_categories','food.category_id','=','food_categories.id')
+                    ->where('food.restaurant_id', $restaurant_id)->get([
+                        'food_categories.id AS food_category_id',
+                        'food_categories.name AS food_category_name',
+                        'food.id',
+                        'food.name',
+                        'food.description',
+                        'food.price',
+                    ]);
+
+                return view('restaurantmanager', [strval($restaurant_id)])->with([
+                    'restaurants' => $restaurants,
+                    'pickedRestaurant' => $restaurant_id,
+                    'foods' => $foods
+                ]);
             }
             else
             {
-                return view('restaurantmanager')->with(['restaurants' => $restaurants, 'pickedRestaurant' => 0])->withErrors(['Nem vagy bejelentkezve tetyám!']);
+                return view('restaurantmanager')->with([
+                    'restaurants' => $restaurants,
+                    'pickedRestaurant' => 0,
+                ])->withErrors(['Nem vagy bejelentkezve tetyám!']);
             }
         }
     }
@@ -50,7 +66,9 @@ class RestaurantManagerController extends Controller
             'password' => ['required'],
         ]);
 
-        $restaurant = DB::table('restaurants')->where('restaurants.id', $request->restaurant_id)->first();
+        $restaurant = DB::table('restaurants')
+            ->where('restaurants.id', $request->restaurant_id)->first();
+
         if($restaurant->password == $request->password)
         {
             return redirect('restaurantmanager/' . strval($restaurant->id));
@@ -67,13 +85,15 @@ class RestaurantManagerController extends Controller
             'description' => ['required'],
             'price' => ['required'],
         ]);
-        $order = Food::create([
+
+        $food = Food::create([
             'restaurant_id' => $request->restaurant_id,
             'category_id' => $request->food_category,
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
         ]);
+
         return redirect('restaurantmanager/' . strval($request->restaurant_id));
     }
 }

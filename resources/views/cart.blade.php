@@ -6,7 +6,7 @@
             <p> Name: {{ strval($cartItem['food_name']) }} </p>
             <p> Amount: {{ strval($cartItem['amount']) }} db </p>
             <p> Price: {{ strval($cartItem['price']) }} Ft </p>
-            <form method="POST" action="{{ route('restaurants.removeFromCart') }}">
+            <form method="POST" action="{{ route('cart.removeFromCart') }}">
                 @csrf
                 <input type="hidden" name="food_id" value="{{ $cartItem['food_id'] }}">
 
@@ -14,7 +14,7 @@
             </form>
             <br>
         @endforeach
-        <form method="POST" action="{{ route('restaurants.emptyCart') }}">
+        <form method="POST" action="{{ route('cart.emptyCart') }}">
             @csrf
             <input type="submit" value="Kosár ürítés">
         </form>
