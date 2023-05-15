@@ -17,5 +17,6 @@ class Order extends Model
         'city',
         'address',
         'phone_number',
+        'courier_id',
     ];
 }

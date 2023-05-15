@@ -25,6 +25,7 @@ class OrderFactory extends Factory
             'city' => $this->faker->city(),
             'address' => $this->faker->streetaddress(),
             'phone_number' => $this->faker->e164PhoneNumber(),
+            'courier_id' => \App\Models\Courier::inRandomOrder()->first()->id,
         ];
     }
 }

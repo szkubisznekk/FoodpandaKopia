@@ -18,7 +18,6 @@ class CourierFactory extends Factory
     {
         return [
             'phone_number' => $this->faker->e164PhoneNumber(),
-            'order_id' => \App\Models\Order::inRandomOrder()->first()->id,
         ];
     }
 }
