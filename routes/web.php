@@ -7,6 +7,7 @@ use App\Http\Controllers\RestaurantsController;
 use App\Http\Controllers\RestaurantManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CourierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,4 +45,6 @@ Route::get('/order/{order_id?}', [OrderController::class, 'index']);
 Route::post('/order/confirm', [OrderController::class, 'confirm'])->name('order.confirm');
 Route::post('/order/place', [OrderController::class, 'store'])->name('order.place');
 
-
+Route::get('/courier/{courier_id?}', [CourierController::class, 'index']);
+Route::post('/courier/login', [CourierController::class, 'login'])->name('courier.login');
+Route::post('/courier/changeOrderStatus', [CourierController::class, 'changeOrderStatus'])->name('courier.changeOrderStatus');
