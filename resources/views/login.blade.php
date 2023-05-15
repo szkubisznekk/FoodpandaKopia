@@ -13,12 +13,12 @@
                         <input class="ml-7 text-black" type="text" name="name"><br>
                     </div>
                     <div class="mt-2 text-xl">
-                        <label class="mr-3" for="email">Email:</label>
+                        <label class="mr-[14]" for="email">Email:</label>
                         <input class="text-black" type="text" name="email"><br>
                     </div>
                     <div class="mt-2 text-xl">
                         <label for="password">Jelszó:</label>
-                        <input class="ml-2 text-black" type="text" name="password"><br>
+                        <input class="ml-[7] text-black" type="text" name="password"><br>
                     </div>
                     <div class="text-right pr-2 absolute inset-x-0 bottom-0 h-16">
                         <input
@@ -36,7 +36,7 @@
                     @csrf
                     <div class="mt-2 text-xl">
                         <label for="email">Email:</label>
-                        <input class="ml-4 text-black" type="text" name="email"><br>
+                        <input class="ml-[15] text-black" type="text" name="email"><br>
                     </div>
                     <div class="mt-2 text-xl">
                         <label for="password">Jelszó:</label>
