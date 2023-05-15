@@ -28,16 +28,18 @@
                             </div>
                         @endforeach
                     </div>
-                    <div>
-                        <form method="POST" action="{{ route('restaurantmanager.changeOrderStatus') }}">
-                            @csrf
-                            <input type="hidden" name="order_id" value="{{ $order->id }}">
-                            <input type="hidden" name="order_status_id" value="{{ $order->status_id }}">
-                            <input type="submit"
-                                class="hover:border-2 hover:border-pink-800 hover:text-pink-500 hover:bg-gray-200 ml-10 text-bs middle none center rounded-lg bg-pink-500 py-4 px-6 font-sans font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                value="ELFOGAD">
-                        </form>
-                    </div>
+                    @if ($order->status_id > 3)
+                        <div>
+                            <form method="POST" action="{{ route('restaurantmanager.changeOrderStatus') }}">
+                                @csrf
+                                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                <input type="hidden" name="order_status_id" value="{{ $order->status_id }}">
+                                <input type="submit"
+                                    class="hover:border-2 hover:border-pink-800 hover:text-pink-500 hover:bg-gray-200 ml-10 text-bs middle none center rounded-lg bg-pink-500 py-4 px-6 font-sans font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    value="ELFOGAD">
+                            </form>
+                        </div>
+                    @endif
                 </div>
                 <hr class="w-1/2 h-1 mx-auto my-2 bg-gray-100 border-0 rounded md:my-2 dark:bg-gray-700">
             @endforeach
