@@ -40,7 +40,7 @@
             <!-- NAVIGATION MENUS -->
             <div class="menu">
                 <li><a href="{{ url('/restaurants') }}">Éttermek</a></li>
-                <li><a href="#">Rólunk</a></li>
+                <li><a href="{{ url('/') }}">Rólunk</a></li>
                 @if ($user != null)
                     <li class="services">
                         <p>{{ $user->name }}</p>
