@@ -80,7 +80,7 @@
                     <form method="POST" action="{{ route('restaurantmanager.place') }}">
                         @csrf
                         <input type="hidden" name="restaurant_id" value="{{ $picked_restaurant->id }}">
-                        <div class="mt-4 hover:scale-105">
+                        <div class="mt-4">
                             <label class="text-xl text-white mr-2" for="food_category">Kategória:</label>
                             <select class="h-8 w-48 text-xl" name="food_category">
                                 @foreach ($FOOD_CATEGORIES::all() as $category)
@@ -88,15 +88,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="text-xl mt-4 hover:scale-105">
+                        <div class="text-xl mt-4">
                             <label class="text-xl text-white mr-12" for="name">Név:</label>
                             <input class="h-8" type="text" name="name"><br>
                         </div>
-                        <div class="text-xl mt-4 hover:scale-105">
+                        <div class="text-xl mt-4">
                             <label class="text-xl text-white mr-7" for="description">Leírás:</label>
                             <input type="text" name="description"><br>
                         </div>
-                        <div class="text-xl mt-4 hover:scale-105">
+                        <div class="text-xl mt-4">
                             <label class="text-white mr-16" for="price">Ár: </label>
                             <input type="number" name="price"><br>
                         </div>
@@ -120,11 +120,11 @@
                             <h2 class="align-middle text-center mb-4 font-bold text-4xl">{{ $restaurant->name }}</h2>
                             <form method="POST" action="{{ route('restaurantmanager.login') }}">
                                 @csrf
-                                <div class="ml-8 hover:scale-105">
+                                <div class="ml-8">
                                     <label class="mr-2 text-xl" for="password">
                                         Jelszó:
                                     </label>
-                                    <input class="text-black" type="text" name="password">
+                                    <input class="text-black" type="password" name="password">
                                 </div>
                                 <div class="mt-4 text-center hover:scale-105 hover:text-pink-200">
                                     <input class="outline-white rounded-lg outline outline-2 outline-offset-4"
@@ -144,13 +144,13 @@
                 class="flex items-center flex-wrap justify-around w-1/2 rounded-lg m-8 hover:scale-105 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
                 <form method="POST" action="{{ route('restaurantmanager.register') }}">
                     @csrf
-                    <div class="hover:scale-105">
+                    <div class="">
                         <label class="mr-8 text-xl" for="name">Étterem neve:</label>
                         <input class="text-black" type="text" name="name"><br>
                     </div>
-                    <div class="mt-4 hover:scale-105">
+                    <div class="mt-4">
                         <label class="mr-1 text-xl" for="password">Étterem jelszava:</label>
-                        <input class="text-black" type="text" name="password"><br>
+                        <input class="text-black" type="password" name="password"><br>
                     </div>
                     <div class="mt-8 text-center hover:scale-105 hover:text-pink-200">
                         <input class="outline-white rounded-lg outline outline-2 outline-offset-4" type="submit"
