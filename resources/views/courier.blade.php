@@ -3,7 +3,7 @@
 @section('content')
     @if (isset($courier))
         @foreach ($orders as $order)
-            <div class="flex items-center flex-wrap justify-around">
+            <div class="flex items-center flex-wrap justify-around pt-2">
                 <div class="w-1/2">
                     <p> Irányítószám: {{ $order->postal_code }} </p>
                     <p> Város: {{ $order->city }} </p>
@@ -24,18 +24,9 @@
                     </form>
                 </div>
             </div>
+            <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
         @endforeach
     @else
-        {{-- <div>
-            <form method="POST" action="{{ route('courier.login') }}">
-                @csrf
-                <div>
-                    <label for="courier_id"> ID: </label>
-                    <input type="text" name="courier_id">
-                </div>
-                <input type="submit" value="Login">
-            </form>
-        </div> --}}
         <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
         <h1 class="text-center text-4xl">Futár bejelentkezés</h1>
         <div class="flex items-center flex-wrap justify-around">
