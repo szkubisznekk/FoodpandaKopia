@@ -153,7 +153,7 @@
                         <input class="text-black" type="password" name="password"><br>
                     </div>
                     <div class="mt-4">
-                        <label class="mr-1 text-xl" for="password_confirmation">Étterem jelszava2:</label>
+                        <label class="mr-1 text-xl" for="password_confirmation">Étterem jelszava újra:</label>
                         <input class="text-black" type="password" name="password_confirmation"><br>
                     </div>
                     <div class="mt-8 text-center hover:scale-105 hover:text-pink-200">

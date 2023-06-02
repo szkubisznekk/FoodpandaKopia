@@ -21,7 +21,7 @@
                         <input class="ml-[7] text-black" type="password" name="password"><br>
                     </div>
                     <div class="mt-2 text-xl">
-                        <label for="password_confirmation">Jelszó2:</label>
+                        <label for="password_confirmation">Jelszó újra:</label>
                         <input class="ml-[7] text-black" type="password" name="password_confirmation"><br>
                     </div>
                     <div class="text-right pr-2 absolute inset-x-0 bottom-0 h-16">
