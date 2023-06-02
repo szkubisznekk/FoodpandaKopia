@@ -26,7 +26,7 @@
             </div>
         @endforeach
     @else
-        <div>
+        {{-- <div>
             <form method="POST" action="{{ route('courier.login') }}">
                 @csrf
                 <div>
@@ -35,6 +35,29 @@
                 </div>
                 <input type="submit" value="Login">
             </form>
+        </div> --}}
+        <hr class="w-1/2 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+        <h1 class="text-center text-4xl">Futár bejelentkezés</h1>
+        <div class="flex items-center flex-wrap justify-around">
+            <div
+                class="flex items-center flex-wrap justify-around w-1/2 rounded-lg m-8 hover:scale-105 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
+                <form method="POST" action="{{ route('courier.login') }}">
+                    @csrf
+                    <div class="">
+                        <label class="mr-8 text-xl" for="courier_id">Futár ID-je:</label>
+                        <input class="text-black" type="text" name="courier_id"><br>
+                    </div>
+                    <div class="mt-4">
+                        <label class="mr-1 text-xl" for="password">Futár jelszava:</label>
+                        <input class="text-black" type="" name=""><br>
+                    </div>
+                    <div class="mt-8 text-center hover:scale-105 hover:text-pink-200">
+                        <input class="outline-white rounded-lg outline outline-2 outline-offset-4" type="submit"
+                            value="Bejelentkezés"><br>
+                    </div>
+                </form>
+            </div>
         </div>
     @endif
+
 @endsection

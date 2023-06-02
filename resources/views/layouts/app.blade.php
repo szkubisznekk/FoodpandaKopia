@@ -103,7 +103,7 @@
                   <div>
                       <ul class="text-black  font-medium">
                           <li class="mb-4">
-                              <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" class="hover:underline ">Üzleti szerződési feltételek</a>
+                              <a href="{{ url('/courier') }}" class="hover:underline ">Futár</a>
                           </li>
                           <li>
                               <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" class="hover:underline">Adatkezelési tájékoztató</a>
