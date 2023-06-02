@@ -4,13 +4,17 @@
 
 @section('content')
     @if (isset($order))
-        <div class="bg-center mx-auto w-1/2 rounded-lg m-8 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
+        <div
+            class="bg-center mx-auto w-1/2 rounded-lg m-8 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100">
             <p class="my-1"> Irányítószám: {{ $order->postal_code }} </p>
             <p class="my-1"> Város: {{ $order->city }} </p>
             <p class="my-1"> Cím: {{ $order->address }} </p>
             <p class="my-1"> Telefon: {{ $order->phone_number }} </p>
             <p class="my-1"> Fizetési mód: {{ $order->payment_method_name }} </p>
             <p class="my-1"> Rendelés státusza: {{ $order->status_name }} </p>
+            @isset($courier)
+                <p class="my-1"> Futár telefonszáma: {{ $courier->phone_number }} </p>
+            @endisset
             <div>
                 @foreach ($orderedItems as $orderedItem)
                     <div
@@ -25,7 +29,9 @@
             <p> Összeg: {{ $price }} Ft </p>
         </div>
     @else
-        <form class="bg-center mx-auto w-1/2 rounded-lg m-8 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100" method="POST" action="{{ route('order.place') }}">
+        <form
+            class="bg-center mx-auto w-1/2 rounded-lg m-8 bg-gradient-to-tr from-[#9128ed] to-[#ff83e2] p-4 text-base leading-5 text-white opacity-100"
+            method="POST" action="{{ route('order.place') }}">
             @csrf
             <div class="mt-4">
                 <label class="mr-[41] text-xl" for="postal_code">IRSZ</label>
@@ -53,7 +59,9 @@
                 </select>
             </div>
 
-            <input class="mt-4 hover:text-pink-500 hover:bg-gray-200 text-bs middle none center rounded-lg bg-pink-500 py-4 px-6 font-sans font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="submit" value="Rendelés">
+            <input
+                class="mt-4 hover:text-pink-500 hover:bg-gray-200 text-bs middle none center rounded-lg bg-pink-500 py-4 px-6 font-sans font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="submit" value="Rendelés">
         </form>
     @endif
 @endsection

@@ -28,7 +28,11 @@ class OrderController extends Controller
                 'orders.phone_number',
                 'payment_methods.name AS payment_method_name',
                 'statuses.name AS status_name',
+                'orders.courier_id',
             ]);
+
+        $courier = DB::table('couriers')
+            ->where('couriers.id', $order->courier_id)->first();
 
         $orderedItems = DB::table('baskets')
             ->join('orders', 'orders.id', '=', 'baskets.order_id')
@@ -53,6 +57,7 @@ class OrderController extends Controller
             'order' => $order,
             'orderedItems' => $orderedItems,
             'price' => $price,
+            'courier' => $courier,
         ]);
     }
 
