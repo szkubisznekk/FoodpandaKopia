@@ -51,7 +51,21 @@ class CourierController extends Controller
 
     public function login(Request $request)
     {
-        return redirect('courier/' . $request->courier_id);
+        $request->validate([
+            'password' => ['required'],
+        ]);
+
+        $courier = DB::table('couriers')
+            ->where('couriers.id', $request->courier_id)->first();
+
+        if(Hash::check($request->password, $courier->password))
+        {
+            return redirect('courier/' . $request->courier_id);
+        }
+
+        return redirect('courier')->withErrors([
+            'Rossz jelszó!',
+        ]);
     }
 
     public function changeOrderStatus(Request $request)

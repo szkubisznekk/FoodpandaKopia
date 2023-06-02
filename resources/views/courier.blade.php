@@ -49,7 +49,7 @@
                     </div>
                     <div class="mt-4">
                         <label class="mr-1 text-xl" for="password">Futár jelszava:</label>
-                        <input class="text-black" type="" name=""><br>
+                        <input class="text-black" type="password" name="password"><br>
                     </div>
                     <div class="mt-8 text-center hover:scale-105 hover:text-pink-200">
                         <input class="outline-white rounded-lg outline outline-2 outline-offset-4" type="submit"
